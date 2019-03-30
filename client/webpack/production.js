@@ -24,12 +24,14 @@ config.plugins = config.plugins.concat([
 			NODE_ENV: JSON.stringify('production')
 		}
 	}),
+]);
 
+config.optimization.minimizer = [
 	new webpack.optimize.UglifyJsPlugin({
 		compressor: {
 			warnings: false
 		}
 	})
-]);
+]
 
 module.exports = config;
