@@ -1,0 +1,8 @@
+.collapse__container {
+	max-height: 0px;
+	overflow: hidden;
+}
+
+.collapse__container--start-open {
+	max-height: auto;
+}

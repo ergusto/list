@@ -1,0 +1,39 @@
+@import 'imports';
+
+@each $spacing-key, $spacing-value in $spacings {
+	$suffix: if($spacing-key == 1, '', -#{$spacing-key});
+
+	.padding-all#{$suffix} {
+		padding-left: $spacing-value;
+		padding-bottom: $spacing-value;
+		padding-right: $spacing-value;
+		padding-top: $spacing-value;
+	}
+
+	.padding-vertical#{$suffix} {
+		padding-bottom: $spacing-value;
+		padding-top: $spacing-value;
+	}
+
+	.padding-horizontal#{$suffix} {
+		padding-left: $spacing-value;
+		padding-right: $spacing-value;
+	}
+
+	.padding-left#{$suffix} {
+		padding-left: $spacing-value;
+	}
+
+	.padding-bottom#{$suffix} {
+		padding-bottom: $spacing-value;
+	}
+
+	.padding-right#{$suffix} {
+		padding-right: $spacing-value;
+	}
+
+	.padding-top#{$suffix} {
+		padding-top: $spacing-value;
+	}
+
+}

@@ -1,0 +1,13 @@
+@import 'imports';
+
+@each $width, $width-value in $width-percentages {
+	.width-#{$width}-percent {
+		width: $width-value;
+	}
+}
+
+@each $width, $width-value in $widths {
+	.width-#{$width} {
+		width: $width-value;
+	}
+}

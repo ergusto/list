@@ -1,0 +1,40 @@
+@import 'imports';
+
+.form-field {
+    display: block;
+    padding: .75rem;
+    background-color: white;
+    background-image: none;
+    border: 1px solid #dfe3ed;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.075);
+    box-shadow: 0 1px 3px rgba(0,0,0,.075);
+    width: 100%;
+    -webkit-transition: background-color .12s linear,color .12s linear,border-color .12s linear,padding .12s linear,max-height .12s linear,-webkit-box-shadow .12s linear;
+    transition: background-color .12s linear,color .12s linear,border-color .12s linear,padding .12s linear,max-height .12s linear,-webkit-box-shadow .12s linear;
+    -o-transition: background-color .12s linear,color .12s linear,border-color .12s linear,box-shadow .12s linear,padding .12s linear,max-height .12s linear;
+    transition: background-color .12s linear,color .12s linear,border-color .12s linear,box-shadow .12s linear,padding .12s linear,max-height .12s linear;
+    transition: background-color .12s linear,color .12s linear,border-color .12s linear,box-shadow .12s linear,padding .12s linear,max-height .12s linear,-webkit-box-shadow .12s linear;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+}
+
+.form-field:focus {
+    border-color: color(blue);
+    outline: none;
+}
+
+.form-field::-webkit-input-placeholder,
+.form-field::-moz-placeholder,
+.form-field:-ms-input-placeholder,
+.form-field:-moz-placeholder,
+.form-field::placeholder{
+    color: blue;
+}
+
+.form-field-error p {
+    padding-left: .75rem;
+}

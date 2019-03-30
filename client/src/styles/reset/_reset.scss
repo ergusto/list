@@ -1,0 +1,24 @@
+html {
+    box-sizing: border-box;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+}
+
+body {
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    font-weight: 200;
+    overflow-y: scroll;
+    position: relative;
+}
