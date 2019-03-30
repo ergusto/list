@@ -28,18 +28,7 @@ config.plugins = config.plugins.concat([
 ]);
 
 config.optimization = {
-	minimize: [
-		new UglifyJsPlugin({
-			cache: true,
-	        parallel: true,
-	        uglifyOptions: {
-	          compress: false,
-	          ecma: 6,
-	          mangle: true
-	        },
-	        sourceMap: true
-		})
-	]
+	minimize: true
 }
 
 module.exports = config;
