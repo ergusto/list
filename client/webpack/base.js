@@ -2,7 +2,7 @@ var path = require('path');
 
 module.exports = {
 	context: path.resolve(__dirname, '..'),
-	entry: '../src',
+	entry: './src',
 	output: {
 		path: path.resolve('./static/build/'),
 		filename: '[name]-[hash].js'

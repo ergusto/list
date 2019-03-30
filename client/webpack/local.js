@@ -16,7 +16,7 @@ config.devtool = 'inline-source-map';
 
 config.module.rules = config.module.rules.concat([{
 	test: /\.js$/,
-	include: path.join(__dirname, './src'),
+	include: path.join(__dirname, '../src'),
 	use: [{
 		loader: 'babel-loader',
 		options: {
