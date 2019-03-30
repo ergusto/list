@@ -40,6 +40,6 @@ config.optimization = {
 	        sourceMap: true
 		})
 	]
-]
+}
 
 module.exports = config;
