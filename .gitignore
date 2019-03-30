@@ -4,4 +4,4 @@ staticfiles
 node_modules
 .DS_Store
 client/webpack/stats.*.json
-
+/static/*
