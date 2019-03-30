@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var BundleTracker = require('webpack-bundle-tracker');
+var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 var config = require('./base.js');
 
@@ -27,7 +28,7 @@ config.plugins = config.plugins.concat([
 ]);
 
 config.optimization.minimize = [
-	new webpack.optimize.UglifyJsPlugin({
+	new UglifyJsPlugin({
 		compressor: {
 			warnings: false
 		}
