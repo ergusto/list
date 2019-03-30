@@ -13,7 +13,7 @@ export default class LandingComponent extends Component {
 					text: "Leest"
 				}),
 				p({
-					text: "Somewhere to make lists about shit",
+					text: "Somewhere to make lists and shit",
 					class: "margin-top"
 				})
 			]

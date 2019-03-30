@@ -29,9 +29,14 @@ config.plugins = config.plugins.concat([
 
 config.optimization.minimize = [
 	new UglifyJsPlugin({
-		compressor: {
-			warnings: false
-		}
+		cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: false,
+          ecma: 6,
+          mangle: true
+        },
+        sourceMap: true
 	})
 ]
 
