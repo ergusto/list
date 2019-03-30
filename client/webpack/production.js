@@ -26,7 +26,7 @@ config.plugins = config.plugins.concat([
 	}),
 ]);
 
-config.optimization.minimizer = [
+config.optimization.minimize = [
 	new webpack.optimize.UglifyJsPlugin({
 		compressor: {
 			warnings: false
