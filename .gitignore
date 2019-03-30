@@ -3,7 +3,5 @@
 staticfiles
 node_modules
 .DS_Store
-/static
-/static
 client/webpack/stats.*.json
 
