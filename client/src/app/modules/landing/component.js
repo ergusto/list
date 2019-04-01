@@ -1,20 +1,21 @@
 import Component from 'component';
 import template from 'template';
 
-const { h2, div, p } = template;
+const { h1, div, p } = template;
 
 export default class LandingComponent extends Component {
 
 	render() {
 		return div({
-			class: "padding-all-2 border-all border-color-blue-grey box-shadow-large background-color-white border-radius-all",
+			class: "padding-horizontal-small text-align-center",
 			children: [
-				h2({
-					text: "Leest"
+				h1({
+					text: "Leest",
+					class: "font-size-huge font-weight-medium"
 				}),
 				p({
 					text: "Somewhere to make lists and shit",
-					class: "margin-top"
+					class: "margin-top font-size-large font-weight-medium"
 				})
 			]
 		});

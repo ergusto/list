@@ -3,6 +3,8 @@ from .base import *
 
 DEBUG = True
 
+ALLOWED_HOSTS = ["withnail.local"]
+
 SECRET_KEY = "m-3eb&dxy4^pq3!^=*tuk799kxtm-7gm_yi*m2gk^526=jkpf!"
 
 DATABASES = {

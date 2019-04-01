@@ -4,4 +4,7 @@
 	.background-color-#{$key} {
 		background-color: $value;
 	}
+	.background-color-#{$key}-on-hover:hover {
+		background-color: $value;
+	}
 }

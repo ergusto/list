@@ -5,6 +5,9 @@ const router = new Router({
 	"/logout": "auth:logout",
 	"/register": "auth:register",
 
+	"/create": "list:create",
+	"/list/:listId/:listTitle": "list:detail",
+
 	"/": "home",
 });
 

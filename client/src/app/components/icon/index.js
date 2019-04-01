@@ -6,10 +6,11 @@ const { i } = template;
 export default class IconComponent extends Component {
 
 	render() {
-		const { name, className } = this.props;
+		const { name, className, ...rest } = this.props;
 
 		return i({
-			class: (("fas fa-" + name) + (className ? (' ' + className) : ''))
+			class: (("icon fas fa-" + name) + (className ? (' ' + className) : '')),
+			...rest
 		});
 	}
 

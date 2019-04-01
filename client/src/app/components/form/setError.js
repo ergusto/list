@@ -2,16 +2,22 @@ import template from 'template';
 
 const { p } = template;
 
+const fieldError = "form-field-error";
+
 export default function setError(name, text, refs) {
 	if(!refs['errors']) {
 		refs['errors'] = {};
 	}
-	const ref = refs.errors[name];
-	if(ref) {
+	const errorRef = refs.errors[name];
+	const inputRef = refs[name];
+	if(errorRef) {
 		const error = p({ text, class: "margin-top-small" });
-		while (ref.firstChild) {
-			ref.removeChild(ref.firstChild);
+		while (errorRef.firstChild) {
+			errorRef.removeChild(errorRef.firstChild);
 		}
-		ref.appendChild(error);
+		errorRef.appendChild(error);
+	}
+	if(inputRef) {
+		inputRef.classList.add(fieldError);
 	}
 }

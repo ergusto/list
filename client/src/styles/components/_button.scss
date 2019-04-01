@@ -12,6 +12,10 @@
     font-size: .9rem;
 }
 
+.button:active, .button:focus {
+    outline: none;
+}
+
 .button--large {
     padding: 1rem 1.3rem;
     font-size: 1.05rem;
@@ -94,6 +98,23 @@
 
 .button--outline:not(:disabled):focus {
     
+}
+
+.button--black {
+    background-color: color(white);
+    border-color: color(black);
+    color: color(black);
+    transition: 0.2s;
+}
+
+.button--black:not(:disabled):hover {
+    background-color: color(black);
+    color: color(white);
+}
+
+.button--black:not(:disabled):active {
+    background-color: color(black);
+    border-color: color(white);
 }
 
 .button--blue {

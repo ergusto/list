@@ -89,6 +89,7 @@ export default class Component {
 	constructor(props) {
 		this.refs = {};
 		this.props = props || {};
+		this.state = {};
 
 		this.componentId = generateUniqueIdentifier();
 		
@@ -132,12 +133,12 @@ export default class Component {
 
 		element.dataset.componentId = this.componentId;
 		element.dataset.componentName = this.constructor.name.toLowerCase();
+
+		this.element = element;
 		
 		if(this.postRender) {
 			this.postRender();
 		}
-
-		this.element = element;
 	}
 
 }

@@ -39,6 +39,7 @@ export default class SiteHeader extends Component {
 
 		return header({
 			class: "margin-bottom-3",
+			id: "site-header",
 			ref: { name: "header", context: this.refs },
 			content: authenticated ? this.auth() : this.unauth()
 		});

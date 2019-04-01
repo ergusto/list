@@ -10,11 +10,7 @@ export default class HomePage extends Component {
 		const container = new HomeContainer();
 
 		return div({
-			class: "padding-all",
-			content: div({
-				class: "max-width-7 margin-top-5",
-				content: container.element
-			})
+			content: container.element
 		});
 	}
 

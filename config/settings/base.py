@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'api',
     'core',
     'items',
+    'lists',
     'users',
 ]
 

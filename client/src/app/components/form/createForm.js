@@ -7,7 +7,7 @@ const { div, header, form, footer } = template;
 
 export default function createForm({ fields, refs, events, header: headerOptions, footer: footerOptions, ...restOptions }) {
 	const { submit, ...restEvents } = events,
-		element = form({ ...restOptions, events: { ...restEvents }});
+		element = form({ ...restOptions, events: { ...restEvents }, ref: { name: "form", context: refs }});
 
 	if(headerOptions) {
 		const headerEl = header(headerOptions);
@@ -28,6 +28,7 @@ export default function createForm({ fields, refs, events, header: headerOptions
 	}
 
 	element.addEventListener("submit", event => {
+		event.preventDefault();
 		resetErrors(refs.errors);
 		submit(event);
 	});

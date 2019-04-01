@@ -2,18 +2,18 @@ import template from 'template';
 
 const { div, input, textarea, label, fieldset } = template;
 
-function renderInput({ name, type, refs, ...rest }) {
+function renderInput({ name, type, refs, class: className, ...rest }) {
 	return input({
 		type: type,
-		class: "form-field",
+		class: className ? ("form-field" + " ") + className : "form-field",
 		ref: { name: name, context: refs },
 		...rest
 	});
 }
 
-function renderTextarea({ name, type, refs, ...rest }) {
+function renderTextarea({ name, type, refs, class: className, ...rest }) {
 	return textarea({
-		class: "form-field",
+		class: className ? ("form-field" + " ") + className : "form-field",
 		ref: { name: name, context: refs },
 		...rest
 	});
@@ -56,7 +56,6 @@ export default function createField(options) {
 	}
 
 	wrapper.appendChild(element);
-	wrapper.appendChild(error);
 
 	return wrapper;
 }

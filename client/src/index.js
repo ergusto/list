@@ -3,6 +3,7 @@ import router from './router.js';
 import routes from 'app/routes';
 
 import './styles/main.scss';
+import '@fortawesome/fontawesome-free/css/all.css';
 
 /***************
 	Initialisation

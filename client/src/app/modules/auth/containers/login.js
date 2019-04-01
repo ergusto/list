@@ -41,6 +41,7 @@ export default class LoginContainer extends Component {
 			login: this.login
 		});
 		return div({
+			class: "max-width-4 width-100-percent",
 			content: form.element
 		});
 	}

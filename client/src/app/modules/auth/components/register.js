@@ -12,7 +12,7 @@ export default class Register extends Component {
 		event.preventDefault();
 
 		const { register } = this.props;
-		const { username, password, repeatPassword } = this.refs;
+		const { username, email, password, repeatPassword } = this.refs;
 
 		if(!username.value.length) {
 			error = true;
@@ -29,11 +29,17 @@ export default class Register extends Component {
 			setError("repeatPassword", "This field is required", this.refs);
 		}
 
+		if(repeatPassword.value !== password.value) {
+			error = true;
+			setError("password", "Passwords do not match", this.refs);
+			setError("repeatPassword", "Passwords do not match", this.refs);
+		}
+
 		if(error) {
 			return;
 		}
 
-		register(username.value, password.value).catch((err) => {
+		register(username.value, password.value).catch(err => {
 			let errors;
 			if(isString(err)) {
 				errors = { non_field_errors: [err] };
@@ -48,11 +54,11 @@ export default class Register extends Component {
 
 	render() {
 		return div({
-			class: "padding-all-2 border-all border-color-blue-grey box-shadow-large background-color-white border-radius-all",
+			class: "padding-horizontal-small",
 			children: [
 				h2({
 					text: "Register",
-					class: "margin-bottom-small"
+					class: "margin-bottom-small margin-left-medium font-weight-medium"
 				}),
 				createForm({
 					refs: this.refs,
@@ -71,14 +77,14 @@ export default class Register extends Component {
 						repeatPassword: {
 							type: "password",
 							label: false,
-							placeholder: "Repeat password",
+							placeholder: "Password (again)",
 						}
 					},
 					footer: [
 						button({
 							type: "submit",
-							text: "Login",
-							class: "button button--blue margin-top-medium block font-size-medium"
+							text: "Register",
+							class: "button button--black margin-top-medium block font-size-medium margin-left-medium font-weight-medium"
 						})
 					]
 				})

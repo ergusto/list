@@ -1,0 +1,117 @@
+.select {
+	position: relative;
+	background-color: white;
+}
+
+.select__field {
+	display: none;
+}
+
+.select--open .select__value {
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+div.select__value {
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Chrome/Safari/Opera */
+	-khtml-user-select: none; /* Konqueror */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
+	line-height: normal;
+}
+
+.select--chevron-left .select__chevron {
+	left: -5px;
+	top: 12px;
+	right: initial;
+}
+
+.select--invisible {
+	min-width: 106px;
+}
+
+.select--invisible .select__value {
+	border-color: transparent;
+	border-radius: 6px;
+}
+
+.select--invisible.select--open .select__value {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.select--invisible .select__chevron {
+	display: none;
+}
+
+.select--invisible:hover .select__chevron, .select--open.select--invisible .select__chevron {
+	display: inline-block;
+}
+
+.select--invisible:hover .select__value, .select--invisible.select--open .select__value {
+	border-color: #ddd;
+}
+
+.select__value span, .select__chevron {
+	display: inline-block;
+}
+
+.select__options {
+	width: 100%;
+	background: white;
+	border: 1px solid #ddd;
+	border-top: 0px;
+	z-index: 1;
+	display: none;
+	border-bottom-right-radius: 0.25rem;
+	border-bottom-left-radius: 0.25rem;
+	box-shadow: 0 2px 8px rgba(59,64,69,0.1);
+}
+
+.select__options--position-bottom {
+	top: 100%;
+	border-top: 0px;
+}
+
+.select__options--position-top {
+	bottom: 100%;
+	top: auto;
+	border-bottom: 0px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-left-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
+
+.select__options--position-top .select__option:first_child div {
+	border-top: 1px;
+	border-top-left-radius: .25rem;
+	border-top-right-radius: .25rem;
+	overflow: hidden;
+}
+
+.select__options--position-top .select__option:last_child div {
+	border-bottom: 0px;
+	border-top-left-radius: 0rem;
+	border-top-right-radius: 0rem;
+}
+
+.select__options.select__options--open {
+	display: block;
+}
+
+.select__option:last-child div {
+	border-bottom: 0px;
+	border-bottom-left-radius: .2rem;
+	border-bottom-right-radius: .2rem;
+}
+
+.select__option:hover {
+	background: rgba(0,0,0,0.03);
+}
+
+.select__option a {
+	border-bottom: 0px;
+}

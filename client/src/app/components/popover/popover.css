@@ -1,0 +1,41 @@
+.popover {
+    transition: 0.333s;
+}
+
+.popover--shown-on-hover:hover .dropdown, .dropdown__container--shown-on-click.dropdown__container--open .dropdown {
+    opacity: 1;
+    visibility: visible;
+    will-change: opacity;
+}
+
+.dropdown__container--shown-on-hover.dropdown__container--shift-animation.dropdown__container--align-center:hover .dropdown, .dropdown__container--shown-on-click.dropdown__container--shift-animation.dropdown__container--align-center.dropdown__container--open .dropdown {
+    -webkit-transform: translateX(-50%) translateY(0);
+    -moz-transform: translateX(-50%) translateY(0);
+    -ms-transform: translateX(-50%) translateY(0);
+    -o-transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown__container--align-center.dropdown__container--shift-animation .dropdown {
+    -webkit-transform: translateX(-50%) translateY(-10px);
+    -moz-transform: translateX(-50%) translateY(-10px);
+    -ms-transform: translateX(-50%) translateY(-10px);
+    -o-transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(-10px);
+}
+
+.dropdown__container--shown-on-hover.dropdown__container--shift-animation.dropdown__container--align-left:hover .dropdown, .dropdown__container--shown-on-hover.dropdown__container--shift-animation.dropdown__container--align-right:hover .dropdown, .dropdown__container--shown-on-click.dropdown__container--shift-animation.dropdown__container--align-left.dropdown__container--open .dropdown, .dropdown__container--shown-on-click.dropdown__container--shift-animation.dropdown__container--align-right.dropdown__container--open .dropdown {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.dropdown__container--align-right.dropdown__container--shift-animation .dropdown, .dropdown__container--align-left.dropdown__container--shift-animation .dropdown {
+    -webkit-transform: translateY(-10px);
+    -moz-transform: translateY(-10px);
+    -ms-transform: translateY(-10px);
+    -o-transform: translateY(-10px);
+    transform: translateY(-10px);
+}

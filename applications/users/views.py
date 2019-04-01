@@ -44,9 +44,6 @@ class RegistrationView(CreateAPIView):
         return serializer.save()
 
     def post(self, request):
-        if getattr(settings, 'REGISTRATION_CLOSED', False):
-            return Response({ 'non_field_errors': ['Registration is not open at this time.'] }, status=status.HTTP_503_SERVICE_UNAVAILABLE)
-
         user = self.create_user(request.data)
         created_user_serializer = UserSerializer(user)
 

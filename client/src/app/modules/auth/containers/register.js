@@ -28,10 +28,10 @@ export default class RegisterContainer extends Component {
 		}
 	}
 
-	register(username,password) {
+	register(username, email, password) {
 		const { authenticated } = getAuth();
 		if(!authenticated) {
-			return register(username, password);
+			return register(username, email, password);
 		}
 		return Promise.reject(new Error('You are already authenticated'));
 	}
@@ -41,6 +41,7 @@ export default class RegisterContainer extends Component {
 			register: this.register
 		});
 		return div({
+			class: "max-width-4 width-100-percent",
 			content: form.element
 		});
 	}

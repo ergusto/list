@@ -43,11 +43,11 @@ export default class Login extends Component {
 
 	render() {
 		return div({
-			class: "padding-all-2 border-all border-color-blue-grey box-shadow-large background-color-white border-radius-all",
+			class: "padding-horizontal-small",
 			children: [
 				h2({
 					text: "Login",
-					class: "margin-bottom-small"
+					class: "margin-bottom-small margin-left-medium font-weight-medium"
 				}),
 				createForm({
 					refs: this.refs,
@@ -68,7 +68,7 @@ export default class Login extends Component {
 						button({
 							type: "submit",
 							text: "Login",
-							class: "button button--blue margin-top-medium block font-size-medium"
+							class: "button button--black margin-top-medium margin-left-medium block font-size-medium font-weight-medium"
 						})
 					]
 				})
