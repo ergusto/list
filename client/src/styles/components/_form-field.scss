@@ -37,3 +37,7 @@ textarea {
     border-color: color(red);
     box-shadow: 0px 0px 1px red;
 }
+
+input:not([type=checkbox]):not([type=radio]) {
+    -webkit-appearance: none;
+}
