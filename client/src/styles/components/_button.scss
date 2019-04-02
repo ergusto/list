@@ -10,6 +10,7 @@
     line-height: normal;
     display: inline-block;
     font-size: .9rem;
+    text-decoration: none;
 }
 
 .button:active, .button:focus {
@@ -83,8 +84,9 @@
 ***********/
 .button--outline {
     background-color: white;
-    border-color: #ccc;
-    color: #586069;
+    border-color: transparent;
+    box-shadow: none;
+    color: black;
     transition: 0.2s;
 }
 
@@ -93,7 +95,8 @@
 }
 
 .button--outline:not(:disabled):active {
-    
+    background-color: color(black);
+    color: color(white);
 }
 
 .button--outline:not(:disabled):focus {

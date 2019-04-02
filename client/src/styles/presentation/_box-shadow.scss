@@ -17,3 +17,7 @@
 .box-shadow-large {
     box-shadow: 0 2px 8px rgba(59,64,69,0.1);
 }
+
+.box-shadow-large-inset {
+	box-shadow: 0 0 6px rgba(59,64,69,0.2) inset;
+}

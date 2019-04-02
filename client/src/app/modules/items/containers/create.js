@@ -6,6 +6,12 @@ import { Items } from 'collections';
 export default class ItemCreateContainer extends Component {
 
 	create(item) {
+		const { listId } = this.props;
+
+		if(listId) {
+			item.list = listId;
+		}
+
 		return Items.create(item);
 	}
 
