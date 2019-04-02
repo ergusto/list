@@ -10,5 +10,8 @@ class Item(AbstractTimestampedModel):
 	description = models.TextField(max_length=4800, null=True, blank=True)
 	url = models.URLField(max_length=2048, null=True, blank=True)
 
+	class Meta:
+		ordering = ['-created']
+
 	def __str__(self):
 		return self.title

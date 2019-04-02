@@ -164,9 +164,8 @@ export function delegateAnchorEvents(event) {
 			return;
 		}
 
-		pushState(JSON.parse(anchorParent.getAttribute('state')) || window.history.state, anchorParent.getAttribute('title'), href);
-		
 		event.preventDefault();
+		pushState(JSON.parse(anchorParent.getAttribute('state')) || window.history.state, anchorParent.getAttribute('title'), href);
 	}
 }
 
