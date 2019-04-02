@@ -1,6 +1,6 @@
 import Component from 'component';
 import { getAuth } from 'auth';
-import Icon from 'components/icon-button';
+import Icon from 'components/icon';
 
 import template from 'template';
 
