@@ -14,7 +14,7 @@ export default class ListDetailComponent extends Component {
 			children: [
 				h2({
 					text: list.title + ":",
-					class: "font-weight-bold font-size-huge"
+					class: "font-weight-bold font-size-huge margin-bottom"
 				})
 			]
 		});

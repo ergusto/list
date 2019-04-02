@@ -1,5 +1,4 @@
-import ItemsCollection from './models/items.js';
-import ListsCollection from './models/lists.js';
+import Collection from 'lib/collection';
 
-export const Items = new ItemsCollection();
-export const Lists = new ListsCollection();
+export const Items = new Collection({ urlBase: '/api/items/' });
+export const Lists = new Collection({ urlBase: '/api/lists/' });

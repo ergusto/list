@@ -1,25 +1,14 @@
 import Component from "component";
 import template from "template";
+import ListComponent from "components/list";
 import Item from './item.js';
 
 const { div, h2,  } = template;
 
-export default class ItemList extends Component {
+export default class ItemList extends ListComponent {
 
-	renderItems() {
-		const { items } = this.props;
-
-		return items.map(item => {
-			const component = new Item({ item });
-			return component.element;
-		});
-	}
-
-	render() {
-		return div({
-			class: "margin-top",
-			children: [...this.renderItems()]
-		});
+	renderItem(item) {
+		return new Item({ item }).element;
 	}
 
 }

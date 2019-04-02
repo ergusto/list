@@ -7,6 +7,7 @@ export default class ListItem extends Component {
 
 	render() {
 		const { list } = this.props;
+		
 		return div({
 			children: [
 				a({

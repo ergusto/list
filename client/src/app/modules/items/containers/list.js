@@ -25,13 +25,12 @@ export default class ItemListContainer extends Component {
 	}
 
 	fetch() {
-		const { listId } = this.props;
+		const { listId: list } = this.props;
 		const { limit, offset } = this.state;
 
-		Items.list({ list_id: listId, limit, offset }).then(resp => {
+		Items.list({ list, limit, offset }).then(resp => {
 			const { next } = resp;
 
-			this.state.limit + initialLimit;
 			this.state.offset = this.state.offset + initialLimit;
 
 			if(next) {
@@ -45,15 +44,23 @@ export default class ItemListContainer extends Component {
 	renderNext() {
 		const { nextContainer } = this.refs;
 
-		const next = button({
-			text: "Next",
-			class: "button button--black button--block margin-all",
-			events: {
-				click: this.fetch.bind(this)
-			}
+		const next = div({
+			class: "padding-horizontal-4 margin-vertical",
+			content: button({
+				text: "Next",
+				class: "button button--black button--block",
+				events: {
+					click: this.clickNext.bind(this)
+				}
+			})
 		});
 
 		nextContainer.appendChild(next);
+	}
+
+	clickNext() {
+		this.fetch();
+		this.removeNext();
 	}
 
 	removeNext() {
@@ -63,22 +70,20 @@ export default class ItemListContainer extends Component {
 	}
 
 	renderItems() {
-		const { listContainer } = this.refs,
-			items = Items.all(),
-			component = new ItemListComponent({
-				items
-			});
+		const { listId } = this.props,
+			items = Items.filter({ list: Number(listId) });
+			
+		this.list.update(items);
+	}
 
-		removeChildren(listContainer);
-		listContainer.appendChild(component.element);
+	preRender() {
+		this.list = new ItemListComponent();
 	}
 
 	render() {
 		return div({
 			children: [
-				div({
-					ref: { context: this.refs, name: "listContainer"}
-				}),
+				this.list.element,
 				div({
 					ref: { context: this.refs, name: "nextContainer"}
 				})

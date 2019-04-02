@@ -39,11 +39,15 @@ export default class HomeContainer extends Component {
 
 	renderLists() {
 		const lists = Lists.all(),
-			component = new ListListComponent({
-				lists
-			});
+			title = h2({
+				text: "Lists:",
+				class: "padding-left-4 padding-top-2 font-weight-bold font-size-huge margin-bottom"
+			}),
+			component = new ListListComponent({ lists });
 
 		removeChildren(this.element);
+
+		this.element.appendChild(title);
 		this.element.appendChild(component.element);
 	}
 

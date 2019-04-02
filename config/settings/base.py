@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'webpack_loader',
     'rest_framework',
+    'django_filters',
 
     # Add your applications here
     'api',
@@ -159,6 +160,10 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.OrderingFilter',
+    ),
     'DEFAULT_VERSION': '1.0',
     'PAGE_SIZE': 10,
     'DEFAULT_RENDERER_CLASSES': (

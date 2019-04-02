@@ -2,15 +2,18 @@ import Component from "component";
 import template from "template";
 import Collapse from "components/collapse";
 
-const { div, h4, button } = template;
+const { div, h4, button, p, a } = template;
 
 export default class Item extends Component {
 
 	renderCollapseContent() {
-		const { description } = this.props.item;
+		const { item: { description, url } } = this.props;
 		return div({
 			class: "padding-all-4 background-color-light-grey",
-			text: description
+			children: [
+				p({ text: description }),
+				url ? a({ text: "Visit", class: "button button--black", href: url }) : null
+			]
 		});
 	}
 

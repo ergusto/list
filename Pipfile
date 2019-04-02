@@ -14,6 +14,7 @@ django-webpack-loader = "*"
 djangorestframework-jwt = "*"
 psycopg2 = "*"
 whitenoise = "*"
+django-filter = "*"
 
 [requires]
 python_version = "3.7"

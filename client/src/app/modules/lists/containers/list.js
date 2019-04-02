@@ -23,7 +23,7 @@ export default class ListListContainer extends Component {
 			component = new ListListComponent({
 				lists
 			});
-
+			
 		removeChildren(listContainer);
 		listContainer.appendChild(component.element);
 	}

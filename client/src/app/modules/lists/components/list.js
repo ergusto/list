@@ -19,7 +19,6 @@ export default class ListList extends Component {
 	render() {
 
 		return div({
-			class: "margin-top",
 			children: [...this.renderItems()]
 		});
 	}

@@ -10,18 +10,10 @@ from lists.models import List
 class ItemViewSet(viewsets.ModelViewSet):
 	serializer_class = ItemSerializer
 	permission_classes = (IsAuthenticated, IsOwner)
+	filter_fields = ("list",)
 	page_size = 10
 
 	def get_queryset(self):
-		list_id = self.request.query_params.get('list_id', None)
-
-		if list_id is not None:
-			list_object = List.objects.get(pk=list_id, user=self.request.user)
-			if list_object:
-				return self.request.user.items.filter(list=list_id)
-			else:
-				raise PermissionDenied
-
 		return self.request.user.items.all()
 
 	def perform_create(self, serializer):
