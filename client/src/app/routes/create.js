@@ -5,11 +5,11 @@ import Header from 'components/site-header/auth.js';
 export default new Route("list:create", function() {
 	return {
 		header: {
-			name: "header:unauth",
+			name: "header:auth",
 			component: Header
 		},
 		primary: {
-			name: "list:detail",
+			name: "list:create",
 			component: ListCreatePage
 		}
 	}
