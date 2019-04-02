@@ -9,6 +9,10 @@ import '@fortawesome/fontawesome-free/css/all.css';
 	Initialisation
 ***************/
 
+if (!('ontouchstart' in document.documentElement)) {
+	document.documentElement.classList.add('no-touch');
+}
+
 document.addEventListener("DOMContentLoaded", function() {
 	const root = document.querySelector("#root"),
 		routeManager = new RouteManager(root,routes);

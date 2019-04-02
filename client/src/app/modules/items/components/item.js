@@ -38,7 +38,7 @@ export default class Item extends Component {
 					children: [
 						h4({
 							text: item.title,
-							class: "font-weight-medium"
+							class: "font-weight-medium font-size-big"
 						}),
 					],
 					events: {

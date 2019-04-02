@@ -17,14 +17,14 @@ export default class Header extends Component {
 					class: "padding-horizontal padding-vertical no-decoration block float-left color-blue--on-hover"
 				}),
 				a({
-					text: "register",
-					href: "/register",
-					class: "padding-horizontal padding-vertical no-decoration block float-left color-blue--on-hover"
-				}),
-				a({
 					text: "login",
 					href: "/login",
-					class: "padding-horizontal padding-vertical no-decoration block float-left color-blue--on-hover"
+					class: "padding-horizontal padding-vertical no-decoration block float-right color-blue--on-hover"
+				}),
+				a({
+					text: "register",
+					href: "/register",
+					class: "padding-horizontal padding-vertical no-decoration block float-right color-blue--on-hover"
 				})
 			]
 		});

@@ -1,6 +1,7 @@
 import Component from 'component';
 import template from 'template';
 import ListDetailContainer from '../containers/detail.js';
+import { ItemListContainer } from 'modules/items';
 
 const { div, h2 } = template;
 
@@ -8,10 +9,14 @@ export default class ListDetailPage extends Component {
 
 	render() {
 		const { listId } = this.props,
-			container = new ListDetailContainer({ id: listId });
+			detailContainer = new ListDetailContainer({ id: listId }),
+			itemsContainer = new ItemListContainer({ listId });
 
 		return div({
-			content: container.element
+			children: [
+				detailContainer.element,
+				itemsContainer.element
+			]
 		});
 	}
 

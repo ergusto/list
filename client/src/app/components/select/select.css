@@ -46,11 +46,11 @@ div.select__value {
 	display: none;
 }
 
-.select--invisible:hover .select__chevron, .select--open.select--invisible .select__chevron {
+.no-touch .select--invisible:hover .select__chevron, .select--open.select--invisible .select__chevron {
 	display: inline-block;
 }
 
-.select--invisible:hover .select__value, .select--invisible.select--open .select__value {
+.no-touch .select--invisible:hover .select__value, .select--invisible.select--open .select__value {
 	border-color: #ddd;
 }
 
@@ -108,7 +108,7 @@ div.select__value {
 	border-bottom-right-radius: .2rem;
 }
 
-.select__option:hover {
+.no-touch .select__option:hover {
 	background: rgba(0,0,0,0.03);
 }
 

@@ -25,9 +25,10 @@ export default class ItemListContainer extends Component {
 	}
 
 	fetch() {
+		const { listId } = this.props;
 		const { limit, offset } = this.state;
 
-		Items.list({ limit, offset }).then(resp => {
+		Items.list({ list_id: listId, limit, offset }).then(resp => {
 			const { next } = resp;
 
 			this.state.limit + initialLimit;

@@ -10,7 +10,7 @@ export default class ListDetailComponent extends Component {
 		const { list } = this.props;
 
 		return div({
-			class: "padding-horizontal-4 padding-vertical-2",
+			class: "padding-horizontal-4 padding-top-2",
 			children: [
 				h2({
 					text: list.title + ":",

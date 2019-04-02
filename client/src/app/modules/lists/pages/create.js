@@ -13,7 +13,7 @@ export default class ListCreatePage extends Component {
 		const formWrapper = div({
 			class: "padding-horizontal-2 max-width-6 width-100-percent",
 			children: [
-				h2({ text: "Create List", class: "margin-bottom-small font-size-large font-weight-medium padding-left-medium" }),
+				h2({ text: "Create List", class: "margin-bottom-small font-size-huge font-weight-bold padding-left-medium" }),
 				container.element
 			]
 		})
