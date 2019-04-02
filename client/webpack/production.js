@@ -12,7 +12,8 @@ config.module.rules = config.module.rules.concat([{
 	use: [{
 		loader: 'babel-loader',
 		options: {
-			presets: ['@babel/preset-env']
+			presets: ['@babel/preset-env'],
+			plugins: ["transform-class-properties"]
 		}
 	}]
 }]);
