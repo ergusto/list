@@ -21,6 +21,7 @@ export default class ItemListContainer extends Component {
 		Items.onAddMany(this.renderItems.bind(this));
 		Items.onAdd(this.renderItems.bind(this));
 		Items.onCreated(this.renderItems.bind(this));
+		Items.onDelete(this.renderItems.bind(this));
 		
 		this.fetch();
 	}
@@ -73,8 +74,6 @@ export default class ItemListContainer extends Component {
 	renderItems() {
 		const { listId } = this.props,
 			items = Items.filter({ list: Number(listId) });
-
-		console.log(items);
 			
 		this.list.update(items);
 	}

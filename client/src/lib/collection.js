@@ -60,10 +60,19 @@ export default class Collection {
 		if(params && Object.keys(params).length) {
 			url = encodeParams(url, params);
 		}
-		return getRequest(url).then(response => {
-			const { results } = response;
+		return getRequest(url).then(json => {
+			const { results } = json;
 			this.addMany(results);
-			return new Promise(resolve => resolve(response));
+			return new Promise(resolve => resolve(json));
+		});
+	}
+
+	destroy(id) {
+		return deleteRequest((this.urlBase + id)).then(json => {
+			return this.retrieve(id).then(model => {
+				this.delete(model);
+				return new Promise(resolve => resolve(model));
+			});
 		});
 	}
 
@@ -191,6 +200,7 @@ export default class Collection {
 		const id = model['id'],
 			eventName = MODEL_REMOVED + ":" + id;
 		this.emit(eventName,model);
+		this.emit(MODEL_REMOVED,model);
 	}
 
 	on(eventName,callback) {
@@ -243,6 +253,26 @@ export default class Collection {
 			eventName = eventName + ":" + id;
 		}
 		this.off(eventName,callback);
+	}
+
+	onDelete(id, callback) {
+		let eventName = MODEL_REMOVED;
+		if(isFunction(id)) {
+			callback = id;
+		} else {
+			eventName = eventName + ":" + id;
+		}
+		this.on(eventName, callback);
+	}
+
+	offDelete(id, callback) {
+		let eventName = MODEL_REMOVED;
+		if(isFunction(id)) {
+			callback = id;
+		} else {
+			eventName = eventName + ":" + id;
+		}
+		this.off(eventName, callback);
 	}
 
 }

@@ -15,7 +15,7 @@ export default function createForm({ fields, refs, events, header: headerOptions
 	}
 
 	for(let name in fields) {
-		let fieldOptions = fields[name],
+		const fieldOptions = fields[name],
 			field = createField({ name, refs, ...fieldOptions });
 		element.appendChild(field);
 	}

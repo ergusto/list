@@ -10,6 +10,7 @@ class Item(AbstractTimestampedModel):
 	description = models.TextField(max_length=4800, null=True, blank=True)
 	url = models.URLField(max_length=2048, null=True, blank=True)
 	order = models.IntegerField(default=1)
+	complete = models.BooleanField(default=False)
 
 	class Meta:
 		ordering = ['-created']

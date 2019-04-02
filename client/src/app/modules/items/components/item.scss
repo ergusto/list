@@ -2,5 +2,6 @@
 	display: block;
 }
 
-.item-component--open {
+.item-component {
+	transition: background-color .5s;
 }

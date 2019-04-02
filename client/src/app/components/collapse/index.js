@@ -107,7 +107,7 @@ export default class Collapse extends Component {
 	recalculate() {
 		if(this.isInDOM()) {
 			animate({
-				duration: 1000,
+				duration: 500,
 				draw: this.drawRecalculate
 			});
 		}
