@@ -1,7 +1,16 @@
-.item-component:hover .item-component__icon, .item-component--open .item-component__icon {
+.no-touch .item-component__icon {
+	display: none;
+	transition: all .2s ease-in-out;
+}
+
+.no-touch .item-component:hover .item-component__icon, .item-component--open .item-component__icon {
 	display: block;
 }
 
-.item-component {
+.no-touch .item-component {
 	transition: background-color .5s;
+}
+
+.no-touch .item-component__icon:hover {
+	transform: scale(1.2);
 }

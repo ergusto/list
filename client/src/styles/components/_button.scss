@@ -18,8 +18,7 @@
 }
 
 .button--large {
-    padding: 1rem 1.3rem;
-    font-size: 1.05rem;
+    padding: .425rem 5rem;
 }
 
 .button--medium {
@@ -56,6 +55,14 @@
 
 .no-touch .button--shift-on-hover:hover {
     transform: translateY(-2px);
+}
+
+.button--scale-on-hover {
+    transition: transform 5s ease-in-out;
+}
+
+.no-touch .button--scale-on-hover:hover {
+    transform: scale(1.1);
 }
 
 /***********

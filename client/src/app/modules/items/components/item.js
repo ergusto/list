@@ -70,14 +70,14 @@ export default class Item extends Component {
 					class: "item-component__header padding-horizontal-4 padding-vertical block cursor-pointer background-color-light-grey-on-hover",
 					children: [
 						a({
-							class: "item-component__icon float-right padding-top-tiny padding-horizontal display-none color-dark-grey color-black--on-hover",
+							class: "item-component__icon float-right padding-top-tiny padding-horizontal color-dark-grey color-black--on-hover",
 							content: deleteIcon.element,
 							events: {
 								click: this.onDeleteClick.bind(this)
 							}
 						}),
 						a({
-							class: "item-component__icon float-right padding-top-tiny padding-horizontal display-none color-dark-grey color-black--on-hover",
+							class: "item-component__icon float-right padding-top-tiny padding-horizontal color-dark-grey color-black--on-hover",
 							content: checkIcon.element,
 							events: {
 								click: this.onCheckClick.bind(this)
@@ -85,7 +85,7 @@ export default class Item extends Component {
 						}),
 						h4({
 							text: item.title,
-							class: "font-weight-medium font-size-big"
+							class: "font-weight-medium font-size-big margin-right-9"
 						}),
 					],
 					events: {

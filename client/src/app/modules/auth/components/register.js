@@ -7,29 +7,28 @@ const { div, h2, button } = template;
 
 export default class Register extends Component {
 
-	register(event) {
+	register(values) {
 		let error = false;
-		event.preventDefault();
 
 		const { register } = this.props;
-		const { username, email, password, repeatPassword } = this.refs;
+		const { username, email, password, repeatPassword } = values;
 
-		if(!username.value.length) {
+		if(!username.length) {
 			error = true;
 			setError("username", "This field is required", this.refs);
 		}
 
-		if(!password.value.length) {
+		if(!password.length) {
 			error = true;
 			setError("password", "This field is required", this.refs);
 		}
 
-		if(!repeatPassword.value.length) {
+		if(!repeatPassword.length) {
 			error = true;
 			setError("repeatPassword", "This field is required", this.refs);
 		}
 
-		if(repeatPassword.value !== password.value) {
+		if(repeatPassword !== password) {
 			error = true;
 			setError("password", "Passwords do not match", this.refs);
 			setError("repeatPassword", "Passwords do not match", this.refs);
@@ -39,7 +38,7 @@ export default class Register extends Component {
 			return;
 		}
 
-		register(username.value, password.value).catch(err => {
+		register(username, password).catch(err => {
 			let errors;
 			if(isString(err)) {
 				errors = { non_field_errors: [err] };

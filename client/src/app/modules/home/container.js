@@ -7,14 +7,13 @@ import { redirect } from 'router';
 
 const { div, p, button, h2 } = template;
 
-const initialLimit = 2000;
+const initialLimit = 20;
 
 export default class HomeContainer extends Component {
 
 	constructor(props) {
 		super(props);
 
-		this.state.selected = null;
 		this.state.limit = initialLimit;
 		this.state.offset = 0;
 	}
@@ -27,32 +26,83 @@ export default class HomeContainer extends Component {
 		const { limit, offset } = this.state;
 
 		Lists.list({ limit, offset }).then(resp => {
-			const { results } = resp;
+			const { results, next } = resp;
+
+			this.state.offset = this.state.offset + initialLimit;
 
 			if(!results.length) {
 				redirect('/create');
 			} else {
 				this.renderLists();
+
+				if(next) {
+					this.renderNext();
+				} else {
+					this.removeNext();
+				}
 			}
 		});
 	}
 
+	renderNext() {
+		const { nextContainer } = this.refs;
+
+		const next = div({
+			class: "padding-horizontal-4 margin-vertical",
+			content: button({
+				text: "Next",
+				class: "button button--black button--large",
+				events: {
+					click: this.clickNext.bind(this)
+				}
+			})
+		});
+
+		nextContainer.appendChild(next);
+	}
+
+	clickNext() {
+		this.fetch();
+		this.removeNext();
+	}
+
+	removeNext() {
+		const { nextContainer } = this.refs;
+
+		removeChildren(nextContainer);
+	}
+
 	renderLists() {
-		const lists = Lists.all(),
+		const { titleContainer } = this.refs,
+			lists = Lists.all(),
 			title = h2({
 				text: "Lists:",
 				class: "padding-left-4 padding-top-2 font-weight-bold font-size-huge margin-bottom"
-			}),
-			component = new ListListComponent({ lists });
+			});
 
-		removeChildren(this.element);
+		if(!titleContainer.contains(title)) {
+			titleContainer.appendChild(title);
+		}
 
-		this.element.appendChild(title);
-		this.element.appendChild(component.element);
+		this.list.update(lists);
+	}
+
+	preRender() {
+		this.list = new ListListComponent();
 	}
 
 	render() {
-		return div();
+		return div({
+			children: [
+				div({
+					ref: { context: this.refs, name: "titleContainer" }
+				}),
+				this.list.element,
+				div({
+					ref: { context: this.refs, name: "nextContainer"}
+				})
+			]
+		});
 	}
 
 }

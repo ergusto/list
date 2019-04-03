@@ -6,7 +6,7 @@ import { removeChildren } from 'lib';
 
 const { div, p, button } = template;
 
-const initialLimit = 20;
+const initialLimit = 2;
 
 export default class ItemListContainer extends Component {
 

@@ -4,6 +4,7 @@ const { div, input, textarea, label, fieldset } = template;
 
 function renderInput({ name, type, refs, class: className, ...rest }) {
 	return input({
+		name,
 		type: type,
 		class: className ? ("form-field" + " ") + className : "form-field",
 		ref: { name: name, context: refs },
@@ -13,6 +14,7 @@ function renderInput({ name, type, refs, class: className, ...rest }) {
 
 function renderTextarea({ name, type, refs, class: className, ...rest }) {
 	return textarea({
+		name,
 		class: className ? ("form-field" + " ") + className : "form-field",
 		ref: { name: name, context: refs },
 		...rest

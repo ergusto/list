@@ -1,7 +1,7 @@
 import template from 'template';
 import createField from './createField.js';
 import resetErrors from './resetErrors.js';
-import { isDOMNode } from 'lib';
+import { isDOMNode, getFormValues } from 'lib';
 
 const { div, header, form, footer } = template;
 
@@ -30,7 +30,8 @@ export default function createForm({ fields, refs, events, header: headerOptions
 	element.addEventListener("submit", event => {
 		event.preventDefault();
 		resetErrors(refs.errors);
-		submit(event);
+		const values = getFormValues(element);
+		submit(values,event);
 	});
 
 	return element;

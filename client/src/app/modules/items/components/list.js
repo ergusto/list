@@ -1,4 +1,3 @@
-import Component from "component";
 import template from "template";
 import ListComponent from "components/list";
 import Item from './item.js';

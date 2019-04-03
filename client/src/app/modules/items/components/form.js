@@ -6,14 +6,13 @@ const { div, h4, button } = template;
 
 export default class CreateItem extends Component {
 
-	submit(event) {
+	submit(values, event) {
 		let error = false;
-		event.preventDefault();
 
 		const { submit } = this.props;
-		const { form, title, url, description } = this.refs;
+		const { title, url, description } = values;
 
-		if(!title.value.length) {
+		if(!title.length) {
 			error = true;
 			setError("title", "Title is required", this.refs);
 		}
@@ -22,8 +21,8 @@ export default class CreateItem extends Component {
 			return;
 		}
 
-		submit({ title: title.value, url: url.value, description: description.value }).then(model => {
-			form.reset();
+		submit({ title, url, description }).then(model => {
+			this.refs.form.reset();
 		});
 	}
 

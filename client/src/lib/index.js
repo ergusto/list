@@ -276,3 +276,16 @@ export function throttle(callback, wait) {
 export function isInDOM(node) {
 	return (node === document.body) ? false : document.body.contains(node);
 }
+
+export function getFormValues(formEl) {
+	const data = {};
+
+	for(let i = 0, l = formEl.elements.length; i < l; i++) {
+		const input = formEl.elements[i];
+		if(input && input["value"] !== undefined && input["name"]) {
+			data[input.name] = input.value;
+		}
+	}
+
+	return data;
+}

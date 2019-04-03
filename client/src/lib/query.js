@@ -1,11 +1,8 @@
-import Emitter from 'lib/emitter';
-
 export default class Query {
 
 	constructor(options) {
 		this.options = options || {};
 		this.collection = options.collection;
-		this.emitter = new Emitter();
 		this.id = this.collection.id;
 		this.filters = [];
 		this.sortFn = null;

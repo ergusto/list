@@ -56,7 +56,7 @@ export default class CreateList extends Component {
 						button({
 							type: "submit",
 							text: "Create",
-							class: "button button--black margin-top-medium margin-left-medium block font-size-medium font-weight-medium"
+							class: "button button--black button--scale-on-hover margin-top-medium margin-left-medium block font-size-medium font-weight-medium"
 						}),
 						cancel
 					]

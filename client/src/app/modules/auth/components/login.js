@@ -7,19 +7,18 @@ const { div, h2, button } = template;
 
 export default class Login extends Component {
 
-	login(event) {
+	login(values) {
 		let error = false;
-		event.preventDefault();
 
 		const { login } = this.props;
-		const { username, password } = this.refs;
+		const { username, password } = values;
 
-		if(!username.value.length) {
+		if(!username.length) {
 			error = true;
 			setError("username", "This field is required", this.refs);
 		}
 
-		if(!password.value.length) {
+		if(!password.length) {
 			error = true;
 			setError("password", "This field is required", this.refs);
 		}
@@ -28,7 +27,7 @@ export default class Login extends Component {
 			return;
 		}
 
-		login(username.value, password.value).catch((err) => {
+		login(username, password).catch((err) => {
 			let errors;
 			if(isString(err)) {
 				errors = { non_field_errors: [err] };
