@@ -38,7 +38,7 @@ export default class Query {
 					filterProperties[key] = filter[key];
 				});
 			});
-			const result = this.collection.filter(filterProperties);
+			result = this.collection.filter(filterProperties);
 		}
 		if(this.sorter) {
 			if(isFunction(this.sorter)) {
