@@ -34,9 +34,7 @@ export default class Query {
 		if(this.filters.length) {
 			const filterProperties = {};
 			this.filters.forEach(filter => {
-				Object.keys(filter).forEach(key => {
-					filterProperties[key] = filter[key];
-				});
+				Object.keys(filter).forEach(key => filterProperties[key] = filter[key]);
 			});
 			result = this.collection.filter(filterProperties);
 		}

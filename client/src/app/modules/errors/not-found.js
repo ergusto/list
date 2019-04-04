@@ -1,15 +1,23 @@
 import Component from 'component';
 import template from 'template';
+import VerticallyCenteredComponent from 'components/vertically-centred';
 import { getAuth } from 'auth';
 
-const { div, p } = template;
+const { div, p, h2 } = template;
 
 export default class NotFoundContainer extends Component {
 
 	render() {
-		const element = div({ text: "Page not found" });
+		const children = h2({
+			class: "font-size-large font-weight-bold",
+			text: "Page not found"
+		});
 
-		return element;
+		const component = new VerticallyCenteredComponent({ children });
+
+		return div({
+			content: component.element
+		});
 	}
 
 }

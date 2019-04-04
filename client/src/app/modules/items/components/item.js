@@ -66,8 +66,6 @@ export default class Item extends Component {
 		const deleteIcon = new Icon({ name: "times" }),
 			checkIcon = new Icon({ name: "check" });
 
-		console.log(item)
-
 		return div({
 			class: "item-component item-component--closed",
 			children: [

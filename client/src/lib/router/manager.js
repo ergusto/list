@@ -3,6 +3,8 @@ import template from 'template';
 
 const { div, header } = template;
 
+import './manager.scss';
+
 export default class RouteManager {
 
 	constructor(main,routes) {
@@ -34,7 +36,46 @@ export default class RouteManager {
 			tertiary: null
 		};
 
+		this.initFader();
 		this.addRoutes(routes);
+	}
+
+	initFader() {
+		this.fader = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+		this.fader.setAttribute("id", "fader");
+	}
+
+	fadeInPage() {
+		// Fading out the #fader will fade in the page.
+		this.fader.classList.add("fader__fade-out");
+		
+		setTimeout(() => {
+			this.main.removeChild(this.fader);
+		}, 300);
+	}
+
+	pageTransition(isInitialPageLoad, callback) {
+		const { header } = this.elements;
+
+		// Fading in the #fader will fade out the page.
+		if(!this.main.contains(this.fader)) {
+			this.main.appendChild(this.fader);
+			this.fader.style.top = header.offsetHeight;
+		}
+		
+		if(!isInitialPageLoad) {
+			this.fader.classList.add("fader__fade-in");
+		}
+		
+		setTimeout(() => {
+			if(callback) callback();
+			this.fader.classList.remove("fader__fade-in");
+			this.fader.classList.add("fader__fade-out");
+
+			setTimeout(() => {
+				this.fadeInPage();
+			});
+		}, 300);
 	}
 
 	addRoutes(routes) {
@@ -56,7 +97,8 @@ export default class RouteManager {
 	}
 
 	renderSection(type,templates,params,mountFn) {
-		const template = templates[type];
+		const template = templates[type],
+			parent = this.elements[type];
 
 		if(template) {
 			let sectionIdentifier = template.name;
@@ -68,15 +110,15 @@ export default class RouteManager {
 			if(sectionIdentifier != this.activeSectionIdentifiers[type]) {
 				const renderedSection = new template.component(params);
 
-				removeChildren(this.elements[type]);
-				this.elements[type].appendChild(renderedSection.element);
-				mountFn(this.main,this.elements[type],renderedSection);
+				removeChildren(parent);
+				parent.appendChild(renderedSection.element);
+				mountFn(this.main, parent, renderedSection);
 				
 				this.activeSectionIdentifiers[type] = sectionIdentifier;
 			}
 		} else {
 			this.activeSectionIdentifiers[type] = null;
-			removeChildren(this.elements[type]);
+			removeChildren(parent);
 		}
 	}
 
@@ -85,48 +127,54 @@ export default class RouteManager {
 			route = this.getRoute(routeName),
 			template = route.render(params);
 
-		this.renderSection("header",template, params, (main,element) => {
-			if(!main.contains(element)) {
-				if(main.firstChild) {
-					main.insertBefore(element,main.firstChild);
-				} else {
-					main.appendChild(element);
-				}
-			}
-		});
+		const isInitialPageLoad = !this.main.firstChild;
 
-		this.renderSection("primary",template,params, (main,element) => {
-			if(!main.contains(element)) {
-				if(main.firstChild) {
-					if(main.childNodes.length > 2) {
-						main.insertBefore(element,main.childNodes[0]);
+		this.pageTransition(isInitialPageLoad, () => {
+
+			this.renderSection("header",template, params, (main,element) => {
+				if(!main.contains(element)) {
+					if(main.firstChild) {
+						main.insertBefore(element,main.firstChild);
 					} else {
 						main.appendChild(element);
 					}
-				} else {
-					main.appendChild(element);
 				}
-			}
-		});
+			});
 
-		this.renderSection("secondary",template,params, (main,element) => {
-			if(!main.contains(element)) {
-				if(main.firstChild) {
-					if(main.childNodes.length > 3) {
-						main.insertBefore(element,main.childNodes[1]);
+			this.renderSection("primary",template,params, (main,element) => {
+				if(!main.contains(element)) {
+					if(main.firstChild) {
+						if(main.childNodes.length > 2) {
+							main.insertBefore(element,main.childNodes[0]);
+						} else {
+							main.appendChild(element);
+						}
 					} else {
 						main.appendChild(element);
 					}
-				} else {
+				}
+			});
+
+			this.renderSection("secondary",template,params, (main,element) => {
+				if(!main.contains(element)) {
+					if(main.firstChild) {
+						if(main.childNodes.length > 3) {
+							main.insertBefore(element,main.childNodes[1]);
+						} else {
+							main.appendChild(element);
+						}
+					} else {
+						main.appendChild(element);
+					}
+				}
+			});
+
+			this.renderSection("tertiary",template,params, (main,element) => {
+				if(!main.contains(element)) {
 					main.appendChild(element);
 				}
-			}
-		});
+			});
 
-		this.renderSection("tertiary",template,params, (main,element) => {
-			if(!main.contains(element)) {
-				main.appendChild(element);
-			}
 		});
 	}
 

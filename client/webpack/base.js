@@ -21,7 +21,7 @@ module.exports = {
 			
 			api: path.resolve(__dirname, '../src/api'),
 			models: path.resolve(__dirname, '../src/api/models'),
-			collections: path.resolve(__dirname, '../src/api/collections.js'),
+			collections: path.resolve(__dirname, '../src/api/collections/index.js'),
 			
 			lib: path.resolve(__dirname, '../src/lib'),
 			
