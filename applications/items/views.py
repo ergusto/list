@@ -18,3 +18,12 @@ class ItemViewSet(viewsets.ModelViewSet):
 
 	def perform_create(self, serializer):
 		serializer.save(user=self.request.user)
+
+	def update(self, request, *args, **kwargs):
+		instance = self.get_object()
+		new_order = request.data.pop('order', None)
+
+		if new_order and new_order != instance.order:
+			Item.objects.move(instance, new_order)
+
+		return super(ItemViewSet, self).update(request, *args, **kwargs)

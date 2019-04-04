@@ -60,6 +60,7 @@ export default class ListComponent extends Component {
 				element = this.elements[item.id];
 			} else {
 				element = this.renderItem(item);
+				this.elements[item.id] = element;
 			}
 			return element;
 		});

@@ -9,5 +9,5 @@ class ItemSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Item
-		fields = ('id', 'user', 'list', 'title', 'description', 'url', 'created', 'modified')
+		fields = ('id', 'user', 'list', 'order', 'title', 'description', 'url', 'created', 'modified')
 		read_only_fields = ('id', 'user', 'created', 'modified')

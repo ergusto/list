@@ -2,6 +2,8 @@ import Component from 'component';
 import { getAuth, onAuthChange, offAuthChange } from 'auth';
 import template from 'template';
 
+import './style.scss';
+
 const { div, a } = template;
 
 export default class Header extends Component {
@@ -9,7 +11,7 @@ export default class Header extends Component {
 	main() {
 		return div({
 			id: "site-header",
-			class: "padding-horizontal-3 font-weight-medium clearfix border-bottom border-color-black",
+			class: "site-header padding-horizontal-3 font-weight-medium clearfix border-bottom border-color-black",
 			children: [
 				a({
 					text: "home",

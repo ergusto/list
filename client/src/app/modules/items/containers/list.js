@@ -6,7 +6,7 @@ import { removeChildren } from 'lib';
 
 const { div, p, button } = template;
 
-const initialLimit = 2;
+const initialLimit = 20;
 
 export default class ItemListContainer extends Component {
 
@@ -30,7 +30,7 @@ export default class ItemListContainer extends Component {
 		const { listId: list } = this.props;
 		const { limit, offset } = this.state;
 
-		Items.list({ list, limit, offset }).then(resp => {
+		Items.list({ list, limit, offset, order: "-order" }).then(resp => {
 			const { next } = resp;
 
 			this.state.offset = this.state.offset + initialLimit;
@@ -73,9 +73,14 @@ export default class ItemListContainer extends Component {
 
 	renderItems() {
 		const { listId } = this.props,
-			items = Items.filter({ list: Number(listId) });
+			query = Items.query();
+
+		query.filter({ list: Number(listId) });
+		query.sort('order');
+
+		const result = query.execute();
 			
-		this.list.update(items);
+		this.list.update(result);
 	}
 
 	preRender() {

@@ -1,6 +1,8 @@
 from django.db import models
 from core.abstract import AbstractTimestampedModel
 
+from .manager import ItemManager
+
 # Create your models here.
 
 class Item(AbstractTimestampedModel):
@@ -11,6 +13,8 @@ class Item(AbstractTimestampedModel):
 	url = models.URLField(max_length=2048, null=True, blank=True)
 	order = models.IntegerField(default=1)
 	complete = models.BooleanField(default=False)
+
+	objects = ItemManager()
 
 	class Meta:
 		ordering = ['-created']

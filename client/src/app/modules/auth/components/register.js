@@ -11,7 +11,7 @@ export default class Register extends Component {
 		let error = false;
 
 		const { register } = this.props;
-		const { username, email, password, repeatPassword } = values;
+		const { username, password, repeatPassword } = values;
 
 		if(!username.length) {
 			error = true;

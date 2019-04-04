@@ -289,3 +289,38 @@ export function getFormValues(formEl) {
 
 	return data;
 }
+
+export function dynamicSort(property) {
+    var sortOrder = 1;
+
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+
+    var properties = property.split('.'),
+    	len = properties.length;
+
+    return function (a, b) {
+        var i = 0, result;
+        while( i < len ) { a = a[properties[i]]; b = b[properties[i]]; i++; }
+
+        if (a < b) {
+            result = -1;
+        } else if (a > b) {
+            result = 1;
+        } else {
+            result = 0;
+        }
+
+        return result * sortOrder;
+    };
+};
+
+export function sortByNestedObjectProperty(array,property) {
+	if(array && isArray(array)) {
+		var result = Array.prototype.sort.call(array,dynamicSort(property));
+		return result;
+	}
+	return array;
+}

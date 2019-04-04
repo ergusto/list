@@ -12,6 +12,6 @@ export function login(username,password) {
 	return postRequest('token', { username, password }).then(authSuccess);
 }
 
-export function register(username,email,password) {
-	return postRequest('register', { username, email, password }).then(authSuccess);
+export function register(username,password) {
+	return postRequest('register', { username, password }).then(authSuccess);
 }

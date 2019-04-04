@@ -1,3 +1,5 @@
+import { isFunction, dynamicSort } from 'lib';
+
 export default class Query {
 
 	constructor(options) {
@@ -5,7 +7,7 @@ export default class Query {
 		this.collection = options.collection;
 		this.id = this.collection.id;
 		this.filters = [];
-		this.sortFn = null;
+		this.sorter = null;
 	}
 
 	filter(filterProperties) {
@@ -19,7 +21,7 @@ export default class Query {
 	}
 
 	sort(sort) {
-		this.sortFn = sort;
+		this.sorter = sort;
 		return this;
 	}
 
@@ -28,6 +30,7 @@ export default class Query {
 	}
 
 	execute() {
+		let result = this.collection.all();
 		if(this.filters.length) {
 			const filterProperties = {};
 			this.filters.forEach(filter => {
@@ -35,10 +38,14 @@ export default class Query {
 					filterProperties[key] = filter[key];
 				});
 			});
-			result = this.collection.filter(filterProperties);
+			const result = this.collection.filter(filterProperties);
 		}
-		if(this.sortFn) {
-			result.sort(this.sortFn);
+		if(this.sorter) {
+			if(isFunction(this.sorter)) {
+				result.sort(this.sorter);
+			} else {
+				result.sort(dynamicSort(this.sorter));
+			}
 		}
 		return result;
 	}

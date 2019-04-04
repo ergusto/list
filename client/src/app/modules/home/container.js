@@ -7,7 +7,7 @@ import { redirect } from 'router';
 
 const { div, p, button, h2 } = template;
 
-const initialLimit = 20;
+const initialLimit = 200;
 
 export default class HomeContainer extends Component {
 

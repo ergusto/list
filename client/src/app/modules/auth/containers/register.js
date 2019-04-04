@@ -28,10 +28,10 @@ export default class RegisterContainer extends Component {
 		}
 	}
 
-	register(username, email, password) {
+	register(username, password) {
 		const { authenticated } = getAuth();
 		if(!authenticated) {
-			return register(username, email, password);
+			return register(username, password);
 		}
 		return Promise.reject(new Error('You are already authenticated'));
 	}

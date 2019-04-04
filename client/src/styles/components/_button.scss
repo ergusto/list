@@ -11,6 +11,7 @@
     display: inline-block;
     font-size: .9rem;
     text-decoration: none;
+    transition: border-color .2s;
 }
 
 .button:active, .button:focus {
@@ -44,6 +45,10 @@
 .button:disabled {
     opacity: .65;
     cursor: not-allowed;
+}
+
+.no-touch .button:hover {
+    transform: scale(1.05);
 }
 
 /***********

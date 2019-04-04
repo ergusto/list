@@ -1,5 +1,6 @@
 import Emitter from './emitter';
 import { isArray, isFunction } from './index.js';
+import Query from './query.js';
 import { getRequest, postRequest, putRequest, patchRequest, deleteRequest, encodeParams } from 'api';
 
 const MODEL_CREATED = "MODEL_CREATED",
@@ -86,6 +87,10 @@ export default class Collection {
 
 	find(callback) {
 		return this.toArray().find(callback);
+	}
+
+	query() {
+		return new Query({ collection: this });
 	}
 
 	filter(properties) {

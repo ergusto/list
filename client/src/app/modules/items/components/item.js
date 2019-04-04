@@ -3,11 +3,12 @@ import template from "template";
 import Collapse from "components/collapse";
 import Icon from "components/icon";
 
+import { formatDate } from "lib";
 import { Items } from "collections";
 
 import './item.scss';
 
-const { div, h4, button, p, a } = template;
+const { div, h4, button, p, a, span } = template;
 
 const collapseOpenClasses = ["item-component--open","background-color-light-grey"],
 	collapseClosedClasses = ["item-component--closed"];
@@ -15,12 +16,14 @@ const collapseOpenClasses = ["item-component--open","background-color-light-grey
 export default class Item extends Component {
 
 	renderCollapseContent() {
-		const { item: { description, url } } = this.props;
+		const { item: { description, url, created } } = this.props;
+
 		return div({
-			class: "padding-horizontal-4 padding-bottom-4 padding-top-3",
+			class: "padding-horizontal-4 padding-bottom-4 padding-top-medium",
 			children: [
-				p({ text: description }),
-				url ? a({ text: "Visit", class: "button button--black", href: url }) : null
+				p({ class: "font-size-tiny font-weight-medium", text: formatDate(created) }),
+				url ? a({ text: "Visit", class: "button button--black", href: url, target: "_blank" }) : null,
+				p({ text: description, class: "margin-top" })
 			]
 		});
 	}
@@ -63,6 +66,8 @@ export default class Item extends Component {
 		const deleteIcon = new Icon({ name: "times" }),
 			checkIcon = new Icon({ name: "check" });
 
+		console.log(item)
+
 		return div({
 			class: "item-component item-component--closed",
 			children: [
@@ -84,8 +89,8 @@ export default class Item extends Component {
 							}
 						}),
 						h4({
-							text: item.title,
-							class: "font-weight-medium font-size-big margin-right-9"
+							class: "font-weight-medium font-size-big margin-right-9",
+							text: item.title
 						}),
 					],
 					events: {
