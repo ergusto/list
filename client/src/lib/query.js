@@ -10,8 +10,8 @@ export default class Query {
 		this.sorter = null;
 	}
 
-	filter(filterProperties) {
-		this.filters.push(filterProperties);
+	filter(filter) {
+		this.filters.push(filter);
 		return this;
 	}
 
@@ -32,11 +32,17 @@ export default class Query {
 	execute() {
 		let result = this.collection.all();
 		if(this.filters.length) {
-			const filterProperties = {};
 			this.filters.forEach(filter => {
-				Object.keys(filter).forEach(key => filterProperties[key] = filter[key]);
+				if(isFunction(filter)) {
+					result = result.filter(filter);
+				} else {
+					result = result.filter(model => {
+						return Object.keys(filter).every(key => {
+							return model[key] === filter[key];
+						});
+					});
+				}
 			});
-			result = this.collection.filter(filterProperties);
 		}
 		if(this.sorter) {
 			if(isFunction(this.sorter)) {

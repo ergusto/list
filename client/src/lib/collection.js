@@ -36,14 +36,6 @@ export default class Collection {
 		});
 	}
 
-	update(model) {
-		const { id } = model;
-		return putRequest((this.urlBase +  id), model).then(json => {
-			this.add(json);
-			return new Promise(resolve => resolve(json));
-		});
-	}
-
 	retrieve(id) {
 		let model = this.models[id];
 		if(model) {
@@ -56,14 +48,10 @@ export default class Collection {
 		}
 	}
 
-	list(params) {
-		let url = this.urlBase;
-		if(params && Object.keys(params).length) {
-			url = encodeParams(url, params);
-		}
-		return getRequest(url).then(json => {
-			const { results } = json;
-			this.addMany(results);
+	update(model) {
+		const { id } = model;
+		return putRequest((this.urlBase +  id), model).then(json => {
+			this.add(json);
 			return new Promise(resolve => resolve(json));
 		});
 	}
@@ -74,6 +62,18 @@ export default class Collection {
 				this.delete(model);
 				return new Promise(resolve => resolve(model));
 			});
+		});
+	}
+
+	list(params) {
+		let url = this.urlBase;
+		if(params && Object.keys(params).length) {
+			url = encodeParams(url, params);
+		}
+		return getRequest(url).then(json => {
+			const { results } = json;
+			this.addMany(results);
+			return new Promise(resolve => resolve(json));
 		});
 	}
 
@@ -91,14 +91,6 @@ export default class Collection {
 
 	query() {
 		return new Query({ collection: this });
-	}
-
-	filter(properties) {
-		return this.toArray().filter(model => {
-			return Object.keys(properties).every(key => {
-				return model[key] === properties[key];
-			});
-		});
 	}
 
 	add(model,options) {
@@ -258,6 +250,14 @@ export default class Collection {
 			eventName = eventName + ":" + id;
 		}
 		this.off(eventName,callback);
+	}
+
+	onUpdateMany(callback) {
+		this.on(MODELS_UPDATED,callback);
+	}
+
+	offUpdateMany(callback) {
+		this.off(MODELS_UPDATED,callback);
 	}
 
 	onDelete(id, callback) {

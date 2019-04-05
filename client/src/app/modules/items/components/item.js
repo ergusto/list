@@ -47,13 +47,24 @@ export default class Item extends Component {
 		event.stopImmediatePropagation();
 	}
 
-	onDeleteClick(event) {
-		const { item: { id } } = this.props;
-
+	onMoveUpClick(event) {
+		// move up in the list - i.e., increase order
 		event.preventDefault();
 		event.stopImmediatePropagation();
 
-		Items.destroy(id);
+		const { moveUp } = this.props;
+
+		moveUp();
+	}
+
+	onMoveDownClick(event) {
+		// move down in the list - i.e., decrease order
+		event.preventDefault();
+		event.stopImmediatePropagation();
+
+		const { moveDown } = this.props;
+
+		moveDown();
 	}
 
 	render() {
@@ -63,8 +74,19 @@ export default class Item extends Component {
 			content: this.renderCollapseContent()
 		});
 
-		const deleteIcon = new Icon({ name: "times" }),
-			checkIcon = new Icon({ name: "check" });
+		const checkIcon = new Icon({ name: "check" });
+		
+		const moveUp = new Icon({
+			name: "chevron-up",
+			className: "block color-black--on-hover",
+			events: { click: this.onMoveUpClick.bind(this) }
+		});
+		
+		const moveDown = new Icon({
+			name: "chevron-down",
+			className: "block color-black--on-hover",
+			events: { click: this.onMoveDownClick.bind(this) }
+		});
 
 		return div({
 			class: "item-component item-component--closed",
@@ -72,12 +94,12 @@ export default class Item extends Component {
 				div({
 					class: "item-component__header padding-horizontal-4 padding-vertical block cursor-pointer background-color-light-grey-on-hover",
 					children: [
-						a({
-							class: "item-component__icon float-right padding-top-tiny padding-horizontal color-dark-grey color-black--on-hover",
-							content: deleteIcon.element,
-							events: {
-								click: this.onDeleteClick.bind(this)
-							}
+						div({
+							class: "item-component__move float-right padding-horizontal color-dark-grey",
+							children: [
+								moveUp.element,
+								moveDown.element
+							]
 						}),
 						a({
 							class: "item-component__icon float-right padding-top-tiny padding-horizontal color-dark-grey color-black--on-hover",

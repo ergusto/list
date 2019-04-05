@@ -11,7 +11,7 @@ export default class Header extends Component {
 	main() {
 		return div({
 			id: "site-header",
-			class: "site-header padding-horizontal-3 font-weight-medium clearfix border-bottom border-color-black",
+			class: "site-header padding-horizontal-3 font-weight-medium clearfix",
 			children: [
 				a({
 					text: "home",
@@ -33,11 +33,9 @@ export default class Header extends Component {
 	}
 
 	render() {
-		const element = div(),
-			main = this.main();
-
-		element.appendChild(main);
-		return element;
+		return div({
+			content: this.main()
+		});
 	}
 
 }

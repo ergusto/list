@@ -18,7 +18,7 @@ export default class LogoutContainer extends Component {
 	}
 
 	render() {
-		return div({ text: "Logout page" });
+		return div();
 	}
 
 }

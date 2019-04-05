@@ -1,4 +1,4 @@
-import { removeChildren } from '../index.js';
+import { removeChildren, areEquivalent } from '../index.js';
 import template from 'template';
 
 const { div, header } = template;
@@ -15,7 +15,7 @@ export default class RouteManager {
 		this.currentRoute = null;
 
 		this.elements = {
-			header: header({ class: "layout-header" }),
+			header: header({ class: "layout-header border-bottom border-color-black" }),
 			sidebar: div({ class: "layout-sidebar" }),
 			primary: div({ class: "layout-primary" }),
 			secondary: div({ class: "layout-secondary" }),
@@ -47,23 +47,19 @@ export default class RouteManager {
 
 	fadeInPage() {
 		// Fading out the #fader will fade in the page.
-		this.fader.classList.add("fader__fade-out");
-		
-		setTimeout(() => {
+		if(this.main.contains(this.fader)) {
 			this.main.removeChild(this.fader);
-		}, 300);
+		}
 	}
 
 	pageTransition(isInitialPageLoad, callback) {
 		const { header } = this.elements;
 
 		// Fading in the #fader will fade out the page.
-		if(!this.main.contains(this.fader)) {
-			this.main.appendChild(this.fader);
-			this.fader.style.top = header.offsetHeight;
-		}
-		
+		this.main.appendChild(this.fader);
+
 		if(!isInitialPageLoad) {
+			this.fader.style.top = header.offsetHeight;
 			this.fader.classList.add("fader__fade-in");
 		}
 		
@@ -74,7 +70,7 @@ export default class RouteManager {
 
 			setTimeout(() => {
 				this.fadeInPage();
-			});
+			}, 300);
 		}, 300);
 	}
 
@@ -123,11 +119,15 @@ export default class RouteManager {
 	}
 
 	renderRoute(routeName,params) {
-		const currentParams = this.currentParams,
+		const { currentRoute, currentParams } = this,
 			route = this.getRoute(routeName),
 			template = route.render(params);
 
 		const isInitialPageLoad = !this.main.firstChild;
+
+		if(currentRoute === routeName && areEquivalent(currentParams, params)) {
+			return;
+		}
 
 		this.pageTransition(isInitialPageLoad, () => {
 
@@ -176,6 +176,8 @@ export default class RouteManager {
 			});
 
 		});
+
+		this.currentRoute = routeName;
 	}
 
 	routerMiddleware() {

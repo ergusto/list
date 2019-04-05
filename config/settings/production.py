@@ -1,13 +1,13 @@
 from .base import *
 import dj_database_url
 
-DEBUG = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG') === "True"
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers - Change this when deploying
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['leest-app.herokuapp.com','.leest.co.uk']
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 

@@ -15,7 +15,7 @@ export default class Header extends Component {
 
 		return div({
 			id: "site-header",
-			class: "site-header border-bottom border-color-black",
+			class: "site-header",
 			children: [
 				div({
 					class: "padding-horizontal-3 background-color-white font-weight-medium clearfix",

@@ -22,8 +22,13 @@ export default class ItemListContainer extends Component {
 		Items.onAdd(this.renderItems.bind(this));
 		Items.onCreated(this.renderItems.bind(this));
 		Items.onDelete(this.renderItems.bind(this));
+		Items.onUpdateMany(this.onUpdateMany.bind(this));
 		
 		this.fetch();
+	}
+
+	onUpdateMany(models) {
+		this.renderItems();
 	}
 
 	fetch() {

@@ -1,5 +1,5 @@
 import ListComponent from "components/list";
-import Item from './item.js';
+import Item from '../containers/item.js';
 
 export default class ItemList extends ListComponent {
 

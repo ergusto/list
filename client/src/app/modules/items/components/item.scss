@@ -14,3 +14,23 @@
 .no-touch .item-component__icon:hover {
 	transform: scale(1.2);
 }
+
+.item-component__move {
+	display: none;
+	margin-top: -3px;
+	justify-content: center;
+	flex-direction: column;
+	text-align: center;
+}
+
+.no-touch .item-component:hover .item-component__move, .item-component--open .item-component__move {
+	display: flex;
+}
+
+.item-component__move i {
+	font-size: 110%;
+}
+
+.no-touch .item-component__move i:hover {
+	transform: scale(1.4);
+}
