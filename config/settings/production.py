@@ -18,6 +18,11 @@ WEBPACK_LOADER = {
 
 STATICFILES_STORAGE = 'core.storage.WhiteNoiseStaticFilesStorage'
 
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES = {}
+DATABASES['default'] = db_from_env
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
