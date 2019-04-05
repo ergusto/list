@@ -128,10 +128,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
 
-
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'api.auth.jwt_response_payload_handler',
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=3),

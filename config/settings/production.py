@@ -16,6 +16,8 @@ WEBPACK_LOADER = {
     }
 }
 
+STATICFILES_STORAGE = 'core.storage.WhiteNoiseStaticFilesStorage'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

@@ -29,5 +29,4 @@ REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = REST_FRAMEWORK['DEFAULT_RENDERER_CL
     'rest_framework.renderers.BrowsableAPIRenderer',
 )
 
-import django_heroku
-django_heroku.settings(locals(), staticfiles=False)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
