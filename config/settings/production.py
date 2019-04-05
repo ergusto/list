@@ -2,6 +2,8 @@ from .base import *
 
 DEBUG = True if os.environ.get('DEBUG') == "True" else False
 
+ALLOWED_HOSTS = ["*"]
+
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -13,4 +15,4 @@ WEBPACK_LOADER = {
 }
 
 import django_heroku
-django_heroku.settings(locals(), staticfiles=False)
+django_heroku.settings(locals(), staticfiles=False, allowed_hosts=False)
