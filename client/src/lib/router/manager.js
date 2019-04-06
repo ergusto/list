@@ -45,13 +45,6 @@ export default class RouteManager {
 		this.fader.setAttribute("id", "fader");
 	}
 
-	fadeInPage() {
-		// Fading out the #fader will fade in the page.
-		if(this.main.contains(this.fader)) {
-			this.main.removeChild(this.fader);
-		}
-	}
-
 	pageTransition(isInitialPageLoad, callback) {
 		const { header } = this.elements;
 
@@ -69,7 +62,9 @@ export default class RouteManager {
 			this.fader.classList.add("fader__fade-out");
 
 			setTimeout(() => {
-				this.fadeInPage();
+				if(this.main.contains(this.fader)) {
+					this.main.removeChild(this.fader);
+				}
 			}, 300);
 		}, 300);
 	}

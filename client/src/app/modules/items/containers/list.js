@@ -13,21 +13,24 @@ export default class ItemListContainer extends Component {
 	constructor(props) {
 		super(props);
 
+		this.renderItems = this.renderItems.bind(this);
+
 		this.state.limit = initialLimit;
 		this.state.offset = 0;
 	}
 
 	onMount() {
-		Items.onAddMany(this.renderItems.bind(this));
-		Items.onAdd(this.renderItems.bind(this));
-		Items.onCreated(this.renderItems.bind(this));
-		Items.onDelete(this.renderItems.bind(this));
+		Items.onAddMany(this.renderItems);
+		Items.onAdd(this.renderItems);
+		Items.onCreated(this.renderItems);
+		Items.onDelete(this.renderItems);
 		Items.onUpdateMany(this.onUpdateMany.bind(this));
+		Items.onUpdate(this.renderItems);
 		
 		this.fetch();
 	}
 
-	onUpdateMany(models) {
+	onUpdateMany() {
 		this.renderItems();
 	}
 

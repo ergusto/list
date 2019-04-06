@@ -1,6 +1,7 @@
 .no-touch .item-component__icon {
 	display: none;
 	transition: all .2s ease-in-out;
+	cursor: pointer;
 }
 
 .no-touch .item-component:hover .item-component__icon, .item-component--open .item-component__icon {
@@ -29,8 +30,14 @@
 
 .item-component__move i {
 	font-size: 110%;
+	transition: all .2s ease-in-out;
 }
 
 .no-touch .item-component__move i:hover {
 	transform: scale(1.4);
+	cursor: pointer;
+}
+
+.item-component__order {
+	min-width: 1rem;
 }

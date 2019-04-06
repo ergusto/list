@@ -16,7 +16,7 @@ export default class ListDetailContainer extends Component {
 	fetch() {
 		const { id } = this.props;
 
-		Lists.retrieve(id).then(list => {
+		Lists.get(id).then(list => {
 			this.renderList(list);
 		});
 	}

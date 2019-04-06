@@ -7,6 +7,7 @@ class ItemManager(models.Manager):
 		queryset = self.get_queryset()
 
 		with transaction.atomic():
+			# Move down
 			if obj.order > int(new_order):
 				queryset.filter(
 					list=obj.list,
@@ -18,8 +19,9 @@ class ItemManager(models.Manager):
 					order=F('order') + 1
 				)
 			else:
+			# Move up
 				queryset.filter(
-					task=obj.task,
+					list=obj.list,
 					order__lte=new_order,
 					order__gt=obj.order
 				).exclude(

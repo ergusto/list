@@ -15,6 +15,27 @@ const collapseOpenClasses = ["item-component--open","background-color-light-grey
 
 export default class Item extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.onUpdate = this.onUpdate.bind(this);
+	}
+
+	onUpdate(item) {
+		this.props.item = item;
+		this.refs.order.textContent = String(item.order);
+	}
+
+	onMount() {
+		const { item: { id } } = this.props;
+		Items.onUpdate(id, this.onUpdate);
+	}
+
+	onUnmount() {
+		const { item: { id } } = this.props;
+		Items.offUpdate(id, this.onUpdate);
+	}
+
 	renderCollapseContent() {
 		const { item: { description, url, created } } = this.props;
 
@@ -48,23 +69,21 @@ export default class Item extends Component {
 	}
 
 	onMoveUpClick(event) {
-		// move up in the list - i.e., increase order
+		const { item } = this.props;
+		// move up in the list - i.e., decrease order
 		event.preventDefault();
 		event.stopImmediatePropagation();
 
-		const { moveUp } = this.props;
-
-		moveUp();
+		this.props.moveUp(item);
 	}
 
 	onMoveDownClick(event) {
-		// move down in the list - i.e., decrease order
+		const { item } = this.props;
+		// move down in the list - i.e., increase order
 		event.preventDefault();
 		event.stopImmediatePropagation();
 
-		const { moveDown } = this.props;
-
-		moveDown();
+		this.props.moveDown(item);
 	}
 
 	render() {
@@ -110,7 +129,16 @@ export default class Item extends Component {
 						}),
 						h4({
 							class: "font-weight-medium font-size-big margin-right-9",
-							text: item.title
+							children: [
+								span({
+									class: "item-component__order inline-block text-align-center margin-right color-dark-grey",
+									text: String(item.order),
+									ref: { context: this.refs, name: "order" }
+								}),
+								span({
+									text: item.title
+								})
+							]
 						}),
 					],
 					events: {

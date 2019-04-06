@@ -6,7 +6,7 @@ import { Lists } from 'collections';
 export default class ListCreateContainer extends Component {
 
 	create(attributes) {
-		return Lists.create(attributes).then(list => {
+		return Lists.post(attributes).then(list => {
 			const { id, slug } = list;
 			redirect(`/list/${id}/${slug}`);
 		});

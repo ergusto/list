@@ -26,7 +26,7 @@ export default class Collection {
 		}
 	}
 
-	create(model) {
+	post(model) {
 		return postRequest(this.urlBase, model).then(json => {
 			this.add(json, {
 				silent: true
@@ -36,7 +36,7 @@ export default class Collection {
 		});
 	}
 
-	retrieve(id) {
+	get(id) {
 		let model = this.models[id];
 		if(model) {
 			return new Promise(resolve => resolve(model));
@@ -48,7 +48,7 @@ export default class Collection {
 		}
 	}
 
-	update(model) {
+	put(model) {
 		const { id } = model;
 		return putRequest((this.urlBase +  id), model).then(json => {
 			this.add(json);
@@ -79,6 +79,10 @@ export default class Collection {
 
 	all() {
 		return this.toArray();
+	}
+
+	count() {
+		return this.all().length;
 	}
 
 	toArray() {

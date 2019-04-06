@@ -29,6 +29,10 @@ export default class Query {
 		return this.sort(null);
 	}
 
+	count() {
+		return this.execute().length;
+	}
+
 	execute() {
 		let result = this.collection.all();
 		if(this.filters.length) {

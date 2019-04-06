@@ -2,6 +2,9 @@ import Component from 'component';
 import ItemForm from '../components/form.js';
 import { redirect } from 'router';
 import { Items } from 'collections';
+import template from 'template';
+
+const { div, p, button } = template;
 
 export default class ItemCreateContainer extends Component {
 
@@ -12,16 +15,20 @@ export default class ItemCreateContainer extends Component {
 			item.list = listId;
 		}
 
-		return Items.create(item);
+		return Items.post(item);
 	}
 
 	render() {
 		const { onCancel } = this.props;
+		
 		const form = new ItemForm({
 			submit: this.create.bind(this),
 			onCancel: onCancel
 		});
-		return form.element;
+
+		return div({
+			content: form.element
+		});
 	}
 
 }

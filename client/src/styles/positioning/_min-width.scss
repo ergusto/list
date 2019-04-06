@@ -1,0 +1,13 @@
+@import 'imports';
+
+@each $width, $width-value in $width-percentages {
+	.min-width-#{$width}-percent {
+		min-width: $width-value;
+	}
+}
+
+@each $width, $width-value in $widths {
+	.min-width-#{$width} {
+		min-width: $width-value;
+	}
+}
