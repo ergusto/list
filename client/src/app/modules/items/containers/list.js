@@ -91,8 +91,14 @@ export default class ItemListContainer extends Component {
 		this.list.update(result);
 	}
 
+	onDrop(dropped, target) {
+		Items.moveTo(dropped, target.order);
+	}
+
 	preRender() {
-		this.list = new ItemListComponent();
+		this.list = new ItemListComponent({
+			onDrop: this.onDrop.bind(this)
+		});
 	}
 
 	render() {

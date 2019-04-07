@@ -65,7 +65,6 @@ export default class DragAndDropListComponent extends ListComponent {
 
 	onDragEnd(itemComponent, event) {
 		const { element } = itemComponent;
-		element.classList.remove(ELEMENT_DRAG_OVER_CLASS);
 		this.draggedItem = null;
 	}
 

@@ -1,6 +1,5 @@
 import DragAndDropListComponent from "components/drag-and-drop-list";
 import Item from '../containers/item.js';
-import { Items } from 'collections';
 
 export default class ItemList extends DragAndDropListComponent {
 
@@ -10,7 +9,11 @@ export default class ItemList extends DragAndDropListComponent {
 	}
 
 	onDrop(dropped, target) {
-		Items.moveTo(dropped, target.order);
+		const { onDrop } = this.props;
+
+		if(onDrop) {
+			onDrop(dropped, target);
+		}
 	}
 
 }
