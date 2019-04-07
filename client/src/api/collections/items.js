@@ -16,13 +16,7 @@ export default class ItemCollection extends Collection {
 		if(obj.order > new_order) {
 			// move up
 			other = this.query().filter(model => {
-				if(model.list !== obj.list) {
-					return false;
-				}
-				if(model.order < obj.order && model.order >= new_order) {
-					return true;
-				}
-				return false;
+				return model.list == obj.list && model.order < obj.order && model.order >= new_order;
 			}).execute();
 
 			to_update = other.map(model => Object.assign({}, model, {
@@ -31,13 +25,7 @@ export default class ItemCollection extends Collection {
 		} else {
 			// move down
 			other = this.query().filter(model => {
-				if(model.list !== obj.list) {
-					return false;
-				}
-				if(model.order <= new_order && model.order > obj.order) {
-					return true;
-				}
-				return false;
+				return model.list == obj.list && model.order <= new_order && model.order > obj.order;
 			}).execute();
 
 			to_update = other.map(model => Object.assign({}, model, {
@@ -53,9 +41,7 @@ export default class ItemCollection extends Collection {
 
 		this.updateMany(to_update);
 
-		return this.put(updated_obj).then(model => {
-			console.log(model);
-		});
+		return this.put(updated_obj);
 	}
 
 	moveUp(item) {
@@ -95,9 +81,7 @@ export default class ItemCollection extends Collection {
 			updated_previous
 		]);
 
-		return this.put(updated_item).then((model) => {
-			console.log(model);
-		});
+		return this.put(updated_item);
 	}
 
 	moveDown(item) {
@@ -137,9 +121,7 @@ export default class ItemCollection extends Collection {
 			updatedNext
 		]);
 
-		return this.put(updatedItem).then(model => {
-			console.log(model);
-		});
+		return this.put(updatedItem);
 	}
 
 }
