@@ -28,11 +28,12 @@ export default class ListComponent extends Component {
 	update(items) {
 		const elements = this.renderItems(items);
 
-		removeChildren(this.element);
-
 		if(!this.element.children.length) {
 			elements.forEach(element => {
-				this.element.appendChild(li(element));
+				const parent = li({
+					content: element
+				});
+				this.element.appendChild(parent);
 			});
 
 			return;
@@ -67,7 +68,11 @@ export default class ListComponent extends Component {
 	}
 
 	render() {
-		return ul();
+		const { className } = this.props;
+
+		return ul({
+			class: className
+		});
 	}
 
 }

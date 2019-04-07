@@ -10,14 +10,62 @@ export default class ItemCollection extends Collection {
 		super(props);
 	}
 
+	moveTo(obj, new_order) {
+		let other, to_update;
+
+		if(obj.order > new_order) {
+			// move up
+			other = this.query().filter(model => {
+				if(model.list !== obj.list) {
+					return false;
+				}
+				if(model.order < obj.order && model.order >= new_order) {
+					return true;
+				}
+				return false;
+			}).execute();
+
+			to_update = other.map(model => Object.assign({}, model, {
+				order: 1 + model.order
+			}));
+		} else {
+			// move down
+			other = this.query().filter(model => {
+				if(model.list !== obj.list) {
+					return false;
+				}
+				if(model.order <= new_order && model.order > obj.order) {
+					return true;
+				}
+				return false;
+			}).execute();
+
+			to_update = other.map(model => Object.assign({}, model, {
+				order: model.order - 1
+			}));
+		}
+
+		const updated_obj = Object.assign({}, obj, {
+			order: new_order
+		});
+
+		to_update.push(updated_obj);
+
+		this.updateMany(to_update);
+
+		return this.put(updated_obj).then(model => {
+			console.log(model);
+		});
+	}
+
 	moveUp(item) {
 		// move up in the list - i.e., decrease order by 1
-		// 1 is first in the list, but comes first in the ui. 
+		// 1 is first in the list, and comes first in the ui. 
 		// decreasing the number increases position in list
-		const new_item_order = Number(item.order) - 1,
+		const new_order = Number(item.order) - 1,
 			new_previous_order = Number(item.order);
 
-		if(new_item_order === 0) {
+		if(new_order === 0) {
 			console.log('already at top of list');
 			return;
 		}
@@ -26,7 +74,7 @@ export default class ItemCollection extends Collection {
 			if(model.list !== item.list) {
 				return false;
 			}
-			return model.order === new_item_order;
+			return model.order === new_order;
 		});
 
 		if(!previous) {
@@ -34,20 +82,20 @@ export default class ItemCollection extends Collection {
 			return;
 		}
 
-		const updatedItem = Object.assign({}, item, {
-			order: new_item_order
+		const updated_item = Object.assign({}, item, {
+			order: new_order
 		});
 
-		const updatedPrevious = Object.assign({}, previous, {
+		const updated_previous = Object.assign({}, previous, {
 			order: new_previous_order
 		});
 
 		this.updateMany([
-			updatedItem,
-			updatedPrevious
+			updated_item,
+			updated_previous
 		]);
 
-		return this.put(updatedItem).then((model) => {
+		return this.put(updated_item).then((model) => {
 			console.log(model);
 		});
 	}

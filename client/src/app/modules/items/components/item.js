@@ -128,7 +128,7 @@ export default class Item extends Component {
 							}
 						}),
 						h4({
-							class: "font-weight-medium font-size-big margin-right-9",
+							class: "font-weight-medium font-size-big margin-right-8",
 							children: [
 								span({
 									class: "item-component__order inline-block text-align-center margin-right color-dark-grey",

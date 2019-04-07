@@ -8,6 +8,26 @@ const { div, p, button } = template;
 
 export default class ItemContainer extends Component {
 
+	constructor(props) {
+		super(props);
+
+		this.onUpdate = this.onUpdate.bind(this);
+	}
+
+	onUpdate(item) {
+		this.props.item = item;
+	}
+
+	onMount() {
+		const { item: { id } } = this.props;
+		Items.onUpdate(id, this.onUpdate);
+	}
+
+	onUnmount() {
+		const { item: { id } } = this.props;
+		Items.offUpdate(id, this.onUpdate);
+	}
+
 	moveUp(item) {
 		// move up in the list - i.e., increase order
 		return Items.moveUp(item);

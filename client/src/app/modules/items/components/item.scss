@@ -17,11 +17,14 @@
 }
 
 .item-component__move {
-	display: none;
 	margin-top: -3px;
 	justify-content: center;
 	flex-direction: column;
 	text-align: center;
+}
+
+.no-touch .item-component__move {
+	display: none;
 }
 
 .no-touch .item-component:hover .item-component__move, .item-component--open .item-component__move {
@@ -39,5 +42,5 @@
 }
 
 .item-component__order {
-	min-width: 1rem;
+	min-width: 1.5rem;
 }
