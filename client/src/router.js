@@ -1,6 +1,6 @@
 import { Router } from 'router';
 	
-const router = new Router({
+export default new Router({
 	"/login": "auth:login",
 	"/logout": "auth:logout",
 	"/register": "auth:register",
@@ -10,5 +10,3 @@ const router = new Router({
 
 	"/": "home",
 });
-
-export default router;

@@ -15,7 +15,7 @@ export default class RouteManager {
 		this.currentRoute = null;
 
 		this.elements = {
-			header: header({ class: "layout-header border-bottom border-color-black" }),
+			header: header({ class: "layout-header border-bottom border-color-light-grey box-shadow" }),
 			sidebar: div({ class: "layout-sidebar" }),
 			primary: div({ class: "layout-primary" }),
 			secondary: div({ class: "layout-secondary" }),

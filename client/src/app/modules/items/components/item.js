@@ -40,7 +40,7 @@ export default class Item extends Component {
 		const { item: { description, url, created } } = this.props;
 
 		return div({
-			class: "padding-horizontal-4 padding-bottom-4 padding-top-medium",
+			class: "padding-horizontal-6 padding-bottom-4 padding-top-medium",
 			children: [
 				p({ class: "font-size-tiny font-weight-medium", text: formatDate(created) }),
 				url ? a({ text: "Visit", class: "button button--black", href: url, target: "_blank" }) : null,

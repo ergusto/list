@@ -10,11 +10,11 @@ export default class ListDetailComponent extends Component {
 		const { list } = this.props;
 
 		return div({
-			class: "padding-horizontal-4 padding-top-2",
+			class: "padding-horizontal-4 padding-top-2 padding-bottom",
 			children: [
 				h2({
 					text: list.title + ":",
-					class: "font-weight-bold font-size-huge margin-bottom margin-right-4"
+					class: "font-weight-bold font-size-huge margin-right-4"
 				})
 			]
 		});

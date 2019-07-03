@@ -1,10 +1,13 @@
 import { RouteManager } from 'router';
 import router from './router.js';
 import routes from 'app/routes';
+import 'drag-drop-touch';
 
 import './styles/main.scss';
+import 'typeface-raleway';
 import '@fortawesome/fontawesome-free/css/all.css';
-import 'drag-drop-touch';
+
+["background-color-lightest-grey","typeface-raleway"].forEach(className => document.body.classList.add(className));
 
 /***************
 	Initialisation

@@ -64,7 +64,6 @@ export default class DragAndDropListComponent extends ListComponent {
 	}
 
 	onDragEnd(itemComponent, event) {
-		const { element } = itemComponent;
 		this.draggedItem = null;
 	}
 

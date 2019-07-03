@@ -1,8 +1,5 @@
 import Collection from 'lib/collection';
 
-const UP_DIRECTION = 'UP_DIRECTION',
-	DOWN_DIRECTION = 'DOWN_DIRECTION';
-
 export default class ItemCollection extends Collection {
 
 	constructor(props = {}) {

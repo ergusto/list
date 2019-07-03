@@ -41,7 +41,7 @@ export default class RegisterContainer extends Component {
 			register: this.register
 		});
 		return div({
-			class: "max-width-4 width-100-percent",
+			class: "max-width-4 width-100-percent padding-all box-shadow border-radius-all background-color-white border-radius border-color-light-grey border-all",
 			content: form.element
 		});
 	}

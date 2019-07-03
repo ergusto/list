@@ -2,11 +2,13 @@ import template from 'template';
 
 const { div, input, textarea, label, fieldset } = template;
 
+const fieldClassName = "form-field border-all border-color-light-grey box-shadow";
+
 function renderInput({ name, type, refs, class: className, ...rest }) {
 	return input({
 		name,
 		type: type,
-		class: className ? ("form-field" + " ") + className : "form-field",
+		class: className ? (fieldClassName + " ") + className : fieldClassName,
 		ref: { name: name, context: refs },
 		...rest
 	});
@@ -15,7 +17,7 @@ function renderInput({ name, type, refs, class: className, ...rest }) {
 function renderTextarea({ name, type, refs, class: className, ...rest }) {
 	return textarea({
 		name,
-		class: className ? ("form-field" + " ") + className : "form-field",
+		class: className ? (fieldClassName + " ") + className : fieldClassName,
 		ref: { name: name, context: refs },
 		...rest
 	});
