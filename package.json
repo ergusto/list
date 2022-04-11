@@ -8,7 +8,8 @@
     "build": "./node_modules/.bin/webpack-dev-server --config client/webpack/local.js --inline --content-base client/app"
   },
   "engines": {
-	"npm": "6.x"
+	"npm": "6.x",
+	"node": "10.x"
   },
   "author": "",
   "license": "ISC",
