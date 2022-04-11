@@ -14,7 +14,7 @@ export default class LandingComponent extends Component {
 					class: "font-size-huge font-weight-medium"
 				}),
 				p({
-					text: "Somewhere to make lists and shit",
+					text: "Somewhere to make lists",
 					class: "margin-top font-size-large font-weight-medium"
 				})
 			]
