@@ -7,6 +7,9 @@
     "heroku-postbuild": "./node_modules/.bin/webpack --config client/webpack/production.js -p",
     "build": "./node_modules/.bin/webpack-dev-server --config client/webpack/local.js --inline --content-base client/app"
   },
+  "engines": {
+	"npm": "6.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
